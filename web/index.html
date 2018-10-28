@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>WiFi Monitor Times</title>
+  <style>
+  #chartContainer {
+    height: 300px;
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+
+  <div id="chartContainer"></div>
+<!-- https://canvasjs.com/docs/charts/how-to/create-charts-from-csv/ -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/jquery.canvasjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+
+  <script>
+  $( document ).ready(function() {
+    $.ajax({
+      type: 'GET',
+      url: 'speedtest/speedtest_stats.csv',
+      dataType: 'text',
+      success: function(data) { processData(data); }
+    });
+
+    function processData(allText) {
+      var allLinesArray = allText.split('\n');
+      var allLinesArray = allText.split(/[\r?\n|\r|\n]+/);
+      console.log('length', allLinesArray.length);
+      if (allLinesArray.length > 0) {
+        var dataPoints = [];
+        var uploadPoints = [];
+        for (var i = 1; i <= allLinesArray.length - 1; i++) {
+          var rowData = allLinesArray[i].split(',');
+          if(rowData && rowData.length > 1)
+
+          dataPoints.push({ label: rowData[0], y: parseInt(rowData[7]) });
+          uploadPoints.push({ label: rowData[0], y: parseInt(rowData[8]) });
+        }
+
+        chart.options.data[0].dataPoints = dataPoints;
+        chart.options.data[1].dataPoints = uploadPoints;
+        chart.render();
+      }
+    }
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+
+      theme: "light2",
+      axisX: {
+          valueFormatString: "DD MMM,YY"
+      },
+      axisY: {
+          includeZero: false,
+          title: "Speed (in Mb/s)",
+          suffix: " Mb"
+      },
+      title: {
+        text: "WiFi Speed"
+      },
+      legend: {
+          cursor: "pointer",
+
+      },
+      data: [
+        {
+          type: "line",
+          name: "Download Speed",
+          showInLegend: true,
+          dataPoints: []
+        },
+        {
+          type: "line",
+          name: "Upload Speed",
+          showInLegend: true,
+          markerType: "square",
+          dataPoints: []
+        }
+      ],
+
+    });
+
+  });
+  </script>
+</body>
+</html>

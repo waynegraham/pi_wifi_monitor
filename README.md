@@ -4,18 +4,21 @@ Notes on setting up a Raspberry Pi to monitor conference WiFi. This assumes the 
 
 (based on https://thepi.io/how-to-use-your-raspberry-pi-to-monitor-broadband-speed/)
 
-Note that this has two parts; one part runs on the Raspberry Pi, the other is accessed through Github Pages. 
+Note that this has two parts; one part runs on the Raspberry Pi, the other is accessed through Github Pages.
+
+## TODO https://github.com/HenrikBengtsson/speedtest-cli-extras
 
 # Pi Setup
 
 * Update the box (`sudo apt update`)
 * Upgrade the box (`sudo apt upgrade`)
-* Install OS dependencies (`sudo apt install python topgrade`)
-* Install the dependencies (`pip install python-pip speedtest-cli`)
+* Install OS dependencies (`sudo apt install python3`)
+* Install the dependencies (`sudo pip3 install -U speedtest-cli python-dotenv virtualenv`)
 
 # Software
 
 * Clone the software (`git clone https://github.com/waynegraham/pi_wifi_monitor.git`)
+* Create a `speedtest` directory (`mkdir ~/speedtest`)
 
 ## GDrive for rpi (https://github.com/prasmussen/gdrive)
 Not in active development; may need an alternative
@@ -41,7 +44,8 @@ Now to sync the directory (use the ID from the above command for this step):
 
 Now do a test run:
 
-`python ./speedtest.py >> speedtest/speedtest.csv`
+`python ./speedtest-csv.py --sep ',' --quote '"' --no-share >> speedtest/speedtest.csv`
+`speedtest-csv --sep ',' --no-share >> speedtest/speedtest_stats.csv`
 
 and sync
 
