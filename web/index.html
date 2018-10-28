@@ -43,8 +43,8 @@
           var rowData = allLinesArray[i].split(',');
           if(rowData && rowData.length > 1)
 
-          dataPoints.push({ label: rowData[0], y: parseInt(rowData[7]) });
-          uploadPoints.push({ label: rowData[0], y: parseInt(rowData[8]) });
+          dataPoints.push({ label: rowData[0], y: parseInt(rowData[3]) });
+          uploadPoints.push({ label: rowData[0], y: parseInt(rowData[4]) });
         }
 
         chart.options.data[0].dataPoints = dataPoints;
