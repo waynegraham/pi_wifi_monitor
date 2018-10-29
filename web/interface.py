@@ -1,6 +1,6 @@
-#!/usr/bin/env python3 
+#!/usr/bin/env python3
 import sys
-import thread
+import _thread
 import webbrowser
 import time
 
