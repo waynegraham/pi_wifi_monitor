@@ -24,6 +24,7 @@ Note that this has two parts; one part runs on the Raspberry Pi, the other is ac
 Not in active development; may need an alternative
 
 `wget -O https://docs.google.com/uc?id=0B3X9GlR6EmbnVXNLanp4ZFRRbzg&export=download`
+
 `chmod +x gdrive`
 
 Connect Google Drive to your account:
@@ -44,7 +45,7 @@ Now to sync the directory (use the ID from the above command for this step):
 
 Now do a test run:
 
-`python ./speedtest-csv.py --sep ',' --quote '"' --no-share >> speedtest/speedtest.csv`
+`python3 ./speedtest-csv.py --sep ',' --quote '"' --no-share >> speedtest/speedtest.csv`
 `speedtest-csv --sep ',' --no-share >> speedtest/speedtest_stats.csv`
 
 and sync
@@ -58,4 +59,4 @@ Set the `ID` in `speedtest-cron.sh` to the ID of the directory above.
 
 Create a new crontab (`crontab -e`) with the following:
 
-`*/5 * * * * /home/pi/pi_wifi_monitor/speedtest-cron.sh`
+`*/10 * * * * /home/pi/pi_wifi_monitor/speedtest-cron.sh`
