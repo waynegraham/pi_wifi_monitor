@@ -19,42 +19,40 @@ Note that this has two parts; one part runs on the Raspberry Pi, the other is ac
 # Software
 
 -   Clone the software (`git clone https://github.com/waynegraham/pi_wifi_monitor.git`)
--   Create a `speedtest` directory (`mkdir ~/speedtest`)
+-   Symlink `/var/www/html` to `~/pi_wifi_monitor/web`
 
-## GDrive for rpi (<https://github.com/prasmussen/gdrive>)
+# Kiosk
 
-Not in active development; may need an alternative
+Based on <https://pimylifeup.com/raspberry-pi-kiosk/>
 
-`wget -O https://github.com/gdrive-org/gdrive/releases/download/2.1.0/gdrive-linux-rpi`
+Edit `/lib/systemd/system/kiosk.service`
 
-`chmod +x gdrive`
+    [Unit]
+    Description=Chromium Kiosk
+    Wants=graphical.target
+    After=graphical.target
 
-Connect Google Drive to your account:
+    [Service]
+    Environment=DISPLAY=:0.0
+    Environment=XAUTHORITY=/home/pi/.Xauthority
+    Type=simple
+    ExecStart=/bin/bash /home/pi/pi_wifi_monitor/kiosk.sh
+    Restart=on-abort
+    User=pi
+    Group=pi
 
-`chmod ./gdrive list`
+    [Install]
+    WantedBy=graphical.target
 
-You should get an authentication prompt with a URL to paste in to your browser. After you have authenticated in the browser, paste the verification code in to the terminal.
+You can now manage this with the `service` command:
 
-### Speedtest directory
+    sudo systemctl enable kiosk.service
+    sudo systemctl start kiosk.service
+    sudo systemctl status kiosk.service
+    sudo systemctl stop kiosk.service
+    sudo systemctl disable kiosk.service
 
-`./gdrive mkdir -p speedtest`
-
-This created the a `speedtest` directory. Be sure to copy the ID returned by this command.
-
-Now to sync the directory (use the ID from the above command for this step):
-
-`./gdrive sync upload speedtest ID`
-
-Now do a test run:
-
-`python ./speedtest.py >> speedtest/speedtest.csv`
-`speedtest-csv --sep ',' --no-share >> speedtest/speedtest_stats.csv`
-
-and sync
-
-`./gdrive sync upload speedtest ID`
-
-Check the google drive that everything uploaded.
+> Note, make sure you disable the service _before_ traveling, or it'll be hard to get the wifi connected.
 
 ## Automation
 
