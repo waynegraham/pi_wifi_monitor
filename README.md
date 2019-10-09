@@ -57,3 +57,7 @@ Set the `ID` in `speedtest-cron.sh` to the ID of the directory above.
 Create a new crontab (`crontab -e`) with the following:
 
 `*/10 * * * * /home/pi/pi_wifi_monitor/speedtest-cron.sh`
+
+## Viewing
+
+Assuming everything is running correctly, you can access the report at <http://localhost>.
