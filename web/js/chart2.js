@@ -1,3 +1,8 @@
+// refresh page every 10 minutes
+setTimeout(function() {
+  window.location.reload(1);
+}, 10 * 60000);
+
 // Adapted from https://www.createwithdata.com/chartjs-and-csv/
 d3.csv('speedtest.csv').then(makeChart);
 
