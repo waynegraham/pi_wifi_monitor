@@ -24,4 +24,4 @@ try:
 except:
     pass
 
-print '{},{},{},{},{}'.format(time.strftime('%m-%d-%y %H:%M'), ping[0], download[0], upload[0])
+print '{},{},{},{}'.format(time.strftime('%m-%d-%y %H:%M'), ping[0], download[0], upload[0])
