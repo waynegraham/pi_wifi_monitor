@@ -1,2 +1,4 @@
 
-virtualenv==15.2.0
+virtualenv==16.7.5
+python-dotenv==0.10.3
+speedtest-cli==2.1.2

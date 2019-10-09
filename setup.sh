@@ -25,4 +25,4 @@ if [ ! -d "$HOME/pi_wifi_monitor"]
   git clone https://github.com/waynegraham/pi_wifi_monitor.git
 fi
 
-wget https://docs.google.com/uc?id=0B3X9GlR6EmbnVXNLanp4ZFRRbzg&export=download .
+wget https://github.com/gdrive-org/gdrive/releases/download/2.1.0/gdrive-linux-rpi
