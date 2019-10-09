@@ -38,11 +38,6 @@ function makeChart(speeds) {
     return mean.Ping;
   });
 
-
-  console.log('download mean', downMean);
-  console.log('upload mean', upMean);
-  console.log('ping mean', pingMean);
-
   var statistics = new Chart('statistics', {
     type: 'horizontalBar',
     data: {
