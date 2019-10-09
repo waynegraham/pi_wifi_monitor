@@ -4,10 +4,6 @@ Notes on setting up a Raspberry Pi to monitor conference WiFi. This assumes the 
 
 (based on <https://thepi.io/how-to-use-your-raspberry-pi-to-monitor-broadband-speed/>)
 
-Note that this has two parts; one part runs on the Raspberry Pi, the other is accessed through Github Pages.
-
-## TODO <https://github.com/HenrikBengtsson/speedtest-cli-extras>
-
 # Pi Setup
 
 -   Update the box (`sudo apt update`)
