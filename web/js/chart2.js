@@ -225,6 +225,7 @@ function makeChart(speeds) {
       responsive: true,
       scales: {
         xAxes: [{
+          display: false,
           type: 'time',
           scaleLabel: {
             display: true,
