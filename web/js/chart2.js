@@ -14,6 +14,8 @@ function calcLinear(data, x, y, minX, minY) {
 
   var pts = [];
 
+  console.log('points', pts);
+
   data.forEach(function(d, i) {
     var obj = {};
     // obj.x = d[x];
@@ -31,11 +33,14 @@ function calcLinear(data, x, y, minX, minY) {
   var xSum = 0.0;
   var ySum = 0.0;
   var sumSq = 0.0;
+  console.log('pts', pts);
   pts.forEach(function(pt) {
     sum = sum + pt.mult;
     xSum = xSum + parseFloat(pt.x);
     ySum = ySum + parseFloat(pt.y);
     sumSq = sumSq + (pt.x * pt.x);
+
+    console.log('sum', pt);
   });
 
   var a = sum * n;
@@ -61,15 +66,15 @@ function calcLinear(data, x, y, minX, minY) {
 
   // Plug the values you have calculated for e and f into the following equation for the y-intercept
   // y-intercept = b = (e - f) / n
-  var b = (e - f) / n;
+  var b2 = (e - f) / n;
 
-  console.log('equation', "y = " + m + "x + " + b);
-  console.log('equation', "x = ( y - " + b + " ) / " + m);
+  console.log('equation', "y = " + m + "x + " + b2);
+  console.log('equation', "x = ( y - " + b2 + " ) / " + m);
 
   var linear_points = [];
 
   data.forEach(function(d, x) {
-    value = (m * x) + b;
+    value = (m * x) + b2;
     linear_points.push(value);
   });
 
@@ -96,15 +101,15 @@ function makeChart(speeds) {
   var color = Chart.helpers.color;
 
   var speedLabels = speeds.map(function(line) {
-    return line.Time
+    return line.Date
   });
 
   var downloadData = speeds.map(function(line) {
-    return line.Down
+    return line.Download
   });
 
   var uploadData = speeds.map(function(line) {
-    return line.Up
+    return line.Upload
   });
 
   var pingData = speeds.map(function(line) {
@@ -116,7 +121,7 @@ function makeChart(speeds) {
   });
 
   var upMean = d3.mean(speeds, function(mean) {
-    return mean.Up;
+    return mean.Upload;
   });
 
   var pingMean = d3.mean(speeds, function(mean) {
@@ -124,11 +129,11 @@ function makeChart(speeds) {
   });
 
   var downMin = d3.min(speeds, function(data) {
-    return data.Down;
+    return data.Download;
   });
 
   var upMin = d3.min(speeds, function(data) {
-    return data.Up;
+    return data.Upload;
   });
 
   var pingMin = d3.min(speeds, function(data) {

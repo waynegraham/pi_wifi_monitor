@@ -1,2 +1,4 @@
 .env
 speedtest.csv
+web/node_modules
+wifi_monitor
