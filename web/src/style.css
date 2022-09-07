@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+html,
+body {
+    height: 100%;
+    font-family: "Lato", sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.chartContainer {
+    width: 100%;
+}
+
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
