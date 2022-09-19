@@ -17,6 +17,19 @@ Notes on setting up a Raspberry Pi to monitor conference WiFi. This assumes the 
 -   Clone the software (`git clone https://github.com/waynegraham/pi_wifi_monitor.git`)
 -   Symlink `/var/www/html` to `~/pi_wifi_monitor/web`
 
+# Invert Display
+ <https://linuxhint.com/rotate-screen-in-raspberry-pi/#:~:text=Head%20to%20your%20Pi%20desktop,want%20to%20modify%20your%20Display.>
+
+```
+DISPLAY=:0 xrandr --output DSI-1 --rotate inverted
+```
+
+To return it
+
+```
+DISPLAY=:0 xrandr --output DSI-1 --rotate normal
+```
+
 # Kiosk
 
 Based on <https://pimylifeup.com/raspberry-pi-kiosk/>

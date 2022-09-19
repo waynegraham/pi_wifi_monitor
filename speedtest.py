@@ -6,7 +6,7 @@ import subprocess
 import time
 
 response = subprocess.Popen(
-    'speedtest-cli --simple --single', shell=True, stdout=subprocess.PIPE).stdout.read()
+    'speedtest --secure --simple --single', shell=True, stdout=subprocess.PIPE).stdout.read()
 
 response = response.decode('utf-8')
 
