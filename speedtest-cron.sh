@@ -1,2 +1,3 @@
 #! /usr/bin/env bash
-python3 /home/pi/pi_wifi_monitor/speedtest.py >> /home/pi/pi_wifi_monitor/speedtest.csv
+export PATH="/usr/bin/python:$PATH"
+python /home/pi/pi_wifi_monitor/speedtest.py >> /home/pi/pi_wifi_monitor/speedtest.csv
